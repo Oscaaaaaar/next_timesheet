@@ -1,1 +1,53 @@
-<h1>hello world</h1>
+<% if logged_in? %>
+    <h2>Welcome back <%= current_user['name'] %></h2>
+    <% if is_manager?() %>
+        <h3>Manager ID: <%= current_user['id'] %></h3>
+      
+    <% end %>
+    <form action="/session" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <button>Log Out</button>
+    </form>
+    <% if !uploaded?(current_user['id']) %>
+        <a href="/timesheets/new"><button>Upload your avaliability</button></a>
+    <% else %>
+        <a href="/timesheets/edit"><button>Edit your avaliability</button></a>
+    <% end %>
+<% else %>
+    <a href="/new"><button>Sign Up</button></a>
+    <a href="/session"><button>Login</button></a>
+<% end %>
+<% if logged_in? && uploaded?(session['user_id']) %>
+    <table>
+        <colgroup>
+            <col>
+            <col span="7" width="7%">
+        </colgroup>
+    
+
+        <tr>
+            <th>Name</th>
+            <th>Monday<br><%= (Date.parse("monday"). + 7).strftime('%m-%d') %></th>
+            <th>Tuesday<br><%= (Date.parse("monday") + 8).strftime('%m-%d') %></th>
+            <th>Wednesday<br><%= (Date.parse("monday") + 9).strftime('%m-%d') %></th>
+            <th>Thursday<br><%= (Date.parse("monday") + 10).strftime('%m-%d') %></th>
+            <th>Friday<br><%= (Date.parse("monday") + 11).strftime('%m-%d') %></th>
+            <th>Saturday<br><%= (Date.parse("monday") + 12).strftime('%m-%d') %></th>
+            <th>Sunday<br><%= (Date.parse("monday") + 13).strftime('%m-%d') %></th>
+            <th>Notes</th>
+        </tr>
+        <% timesheets.each do |timesheet| %>
+            <tr>
+                <td><%= get_user_by_id(timesheet['user_id'])['name'] %></td>
+                <td><%= timesheet['mon'] %></td>
+                <td><%= timesheet['tue'] %></td>
+                <td><%= timesheet['wed'] %></td>
+                <td><%= timesheet['thu'] %></td>
+                <td><%= timesheet['fri'] %></td>
+                <td><%= timesheet['sat'] %></td>
+                <td><%= timesheet['sun'] %></td>
+                <td><%= timesheet['notes'] %></td>
+            </tr>
+        <% end %>
+    </table>
+<% end %>

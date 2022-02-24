@@ -1,0 +1,26 @@
+
+<% if wrong_password == true %>
+    <h3>Password does not match, please try again.</h3>
+<% end %>
+<form action="/new" method="POST">
+    <label for="">Name: </label>
+    <input type="text" name="name">
+
+    <label for="">Email: </label>
+    <input type="text" name="email">
+
+    <label for="">Are you a manager that create the timesheets for your team?: </label>
+    <select name="is_manager">
+        <option value="n">No</option>
+        <option value="y">Yes</option>
+    </select>
+
+    <label for="">Password: </label>
+    <input type="text" name="password">
+
+    <label for="">Confirm Password</label>
+    <input type="text" name="confirm_password">
+
+    <button>Submit</button>
+
+</form>

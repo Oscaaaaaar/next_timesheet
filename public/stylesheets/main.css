@@ -1,0 +1,31 @@
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: #7e91b3;
+  width: 80%;
+  margin: auto;
+}
+
+td,
+th {
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #def1ff;
+}
+
+tr:nth-child(odd) {
+  background-color: white;
+}
+
+label,
+select {
+  display: block;
+}
+
+select {
+  margin-bottom: 10px;
+}
