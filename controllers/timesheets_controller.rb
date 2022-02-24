@@ -1,4 +1,3 @@
-require 'pry'
 get '/timesheets/new' do
     erb :'timesheets/new'
 end
