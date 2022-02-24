@@ -1,5 +1,5 @@
 Use the most powerful tool to manage your team's timesheet.
-Try the app on Heroku(app)[https://stella-timesheet.herokuapp.com/]
+Try the app on Heroku[app](https://stella-timesheet.herokuapp.com/)
 
 ![This is an image](./timesheet.png)
 
