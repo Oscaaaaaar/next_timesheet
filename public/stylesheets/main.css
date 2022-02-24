@@ -3,7 +3,8 @@ h1 {
 }
 
 body {
-  background-color: #7e91b3;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f0f2f5;
   width: 80%;
   margin: auto;
 }
@@ -26,6 +27,21 @@ select {
   display: block;
 }
 
-select {
+select,
+input,
+a,
+button {
   margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+button {
+  background-color: #3c4856;
+  color: white;
+  height: 30px;
+  border: none;
+}
+
+input {
+  height: 20px;
 }

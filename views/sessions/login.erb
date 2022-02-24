@@ -1,8 +1,12 @@
+<% if login_failed %>
+    <h3>Wrong email or password, try again</h3>
+<% end %>
+
 <form action="/session" method="POST">
     <label for="">Email: </label>
     <input type="text" name="email">
 
     <label for="">Password: </label>
-    <input type="text" name="password">
+    <input type="password" name="password">
     <button>Submit</button>
 </form>

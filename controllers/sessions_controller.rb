@@ -1,5 +1,8 @@
 get '/session' do
-    erb :'sessions/login'
+    login_failed = false
+    erb :'sessions/login', locals:{
+        login_failed: login_failed
+    }
 end
 
 post '/session' do
@@ -8,8 +11,13 @@ post '/session' do
     user = get_user_by_email(email)
     if user && BCrypt::Password.new(user['password_digest']) == password
         session['user_id'] = user['id']
+        redirect '/'
+    else 
+        login_failed = true
+        erb :'sessions/login', locals:{
+            login_failed: login_failed
+        }
     end
-    redirect '/'
 end
 
 delete '/session' do
