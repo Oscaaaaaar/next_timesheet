@@ -1,4 +1,7 @@
-Use the most powerful tool to manage your team's timesheet.
+# Next Timesheet
+
+## Use the most powerful tool to manage your team's timesheet.
+
 Try the app on Heroku [NextTimesheet](https://stella-timesheet.herokuapp.com/)
 
 ![This is an image](./timesheet.png)
