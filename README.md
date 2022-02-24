@@ -1,4 +1,7 @@
 Use the most powerful tool to manage your team's timesheet.
+Try the app on Heroku(app)[https://stella-timesheet.herokuapp.com/]
+
+![This is an image](./timesheet.png)
 
 1. If you are a manager:
    -- Sign up and choose 'y' to create a manager ID.
