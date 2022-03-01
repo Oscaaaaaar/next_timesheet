@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if logged_in?() %>
     <h2>Welcome back <%= current_user['name'] %></h2>
     <% if is_manager?() %>
         <h3>Manager ID: <%= current_user['id'] %></h3>
@@ -36,18 +36,32 @@
             <th>Sunday<br><%= (Date.parse("monday") + 13).strftime('%m-%d') %></th>
             <th>Notes</th>
         </tr>
-        <% timesheets.each do |timesheet| %>
+        <% if current_user['id'] == manager_id %>
+            <% timesheets.each do |timesheet| %>
+                <tr>
+                    <td><%= get_user_by_id(timesheet['user_id'])['name'] %></td>
+                    <td><%= timesheet['mon'] %></td>
+                    <td><%= timesheet['tue'] %></td>
+                    <td><%= timesheet['wed'] %></td>
+                    <td><%= timesheet['thu'] %></td>
+                    <td><%= timesheet['fri'] %></td>
+                    <td><%= timesheet['sat'] %></td>
+                    <td><%= timesheet['sun'] %></td>
+                    <td><%= timesheet['notes'] %></td>
+                </tr>
+            <% end %>
+        <% else %>
             <tr>
-                <td><%= get_user_by_id(timesheet['user_id'])['name'] %></td>
-                <td><%= timesheet['mon'] %></td>
-                <td><%= timesheet['tue'] %></td>
-                <td><%= timesheet['wed'] %></td>
-                <td><%= timesheet['thu'] %></td>
-                <td><%= timesheet['fri'] %></td>
-                <td><%= timesheet['sat'] %></td>
-                <td><%= timesheet['sun'] %></td>
-                <td><%= timesheet['notes'] %></td>
-            </tr>
+                    <td><%= current_user['name'] %></td>
+                    <td><%= own_timesheet['mon'] %></td>
+                    <td><%= own_timesheet['tue'] %></td>
+                    <td><%= own_timesheet['wed'] %></td>
+                    <td><%= own_timesheet['thu'] %></td>
+                    <td><%= own_timesheet['fri'] %></td>
+                    <td><%= own_timesheet['sat'] %></td>
+                    <td><%= own_timesheet['sun'] %></td>
+                    <td><%= own_timesheet['notes'] %></td>
+                </tr>
         <% end %>
     </table>
 <% end %>

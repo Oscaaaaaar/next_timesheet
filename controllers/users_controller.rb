@@ -2,8 +2,11 @@ get '/' do
     if logged_in?() && uploaded?(session['user_id'])
         manager_id = find_timesheet(session['user_id'])['manager_id']
         timesheets = get_all_timesheets_by_manager_id(manager_id)
+        own_timesheet = find_timesheet(session['user_id'])
         erb :index, locals:{
-            timesheets: timesheets
+            timesheets: timesheets,
+            own_timesheet: own_timesheet,
+            manager_id: manager_id
         }
     else
         erb :index

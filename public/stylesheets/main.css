@@ -4,7 +4,7 @@ h1 {
 
 body {
   font-family: "Josefin Sans", sans-serif;
-  background-color: #f0f2f5;
+  background-color: #f3e1ef;
   width: 80%;
   margin: auto;
 }
@@ -44,4 +44,7 @@ button {
 
 input {
   height: 20px;
+}
+span {
+  font-size: 150%;
 }
