@@ -37,3 +37,6 @@ def get_all_timesheets_by_manager_id(id)
     run_sql("SELECT * FROM timesheets WHERE manager_id = $1", [id])
 end
 
+def delete_timesheets(manager_id)
+    run_sql("DELETE FROM timesheets WHERE manager_id = $1", [manager_id])
+end

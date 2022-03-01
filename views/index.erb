@@ -2,6 +2,10 @@
     <h2>Welcome back <%= current_user['name'] %></h2>
     <% if is_manager?() %>
         <h3>Manager ID: <%= current_user['id'] %></h3>
+        <form action="/timesheets/delete" method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <button>Reset timesheets</button>
+        </form>
       
     <% end %>
     <form action="/session" method="POST">

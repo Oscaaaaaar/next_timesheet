@@ -16,3 +16,8 @@ end
 get '/timesheets/edit' do
     redirect '/timesheets/new'
 end
+
+delete '/timesheets/delete' do
+    delete_timesheets(session['user_id'])
+    redirect '/'
+end
