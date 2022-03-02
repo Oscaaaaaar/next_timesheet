@@ -16,3 +16,11 @@ def is_manager?()
         false
     end
 end
+
+def is_available?(availability)
+    if availability == "a"
+        return "有空"
+    else
+        return "没空"
+    end
+end
