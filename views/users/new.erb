@@ -1,26 +1,26 @@
 
 <% if wrong_password == true %>
-    <h3>Password does not match, please try again.</h3>
+    <h3>密码不相符,请重试.</h3>
 <% end %>
 <form action="/new" method="POST">
-    <label for="">Name: </label>
+    <label for="">名字: </label>
     <input type="text" name="name">
 
     <label for="">Email: </label>
     <input type="text" name="email">
 
-    <label for="">Are you a manager that create the timesheets for your team? </label>
+    <label for="">你是否需要为你的队伍排班? </label>
     <select name="is_manager">
-        <option value="n">No</option>
-        <option value="y">Yes</option>
+        <option value="n">否,我只需要填写班表</option>
+        <option value="y">是,我要帮团队排班</option>
     </select>
 
-    <label for="">Password: </label>
+    <label for="">密码: </label>
     <input type="password" name="password">
 
-    <label for="">Confirm Password</label>
+    <label for="">再次输入密码： </label>
     <input type="password" name="confirm_password">
 
-    <button>Submit</button>
+    <button>提交</button>
 
 </form>

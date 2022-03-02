@@ -1,12 +1,12 @@
 <% if login_failed %>
-    <h3>Wrong email or password, try again</h3>
+    <h3>邮箱或密码不正确,请重试</h3>
 <% end %>
 
 <form action="/session" method="POST">
-    <label for="">Email: </label>
+    <label for="">邮箱: </label>
     <input type="text" name="email">
 
-    <label for="">Password: </label>
+    <label for="">密码: </label>
     <input type="password" name="password">
-    <button>Submit</button>
+    <button>密码</button>
 </form>

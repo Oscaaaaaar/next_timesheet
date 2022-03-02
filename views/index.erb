@@ -1,25 +1,25 @@
 <% if logged_in?() %>
-    <h2>Welcome back <%= current_user['name'] %></h2>
+    <h2>您好<%= current_user['name'] %></h2>
     <% if is_manager?() %>
-        <h3>Manager ID: <%= current_user['id'] %></h3>
+        <h3>团队编号: <%= current_user['id'] %></h3>
         <form action="/timesheets/delete" method="POST">
             <input type="hidden" name="_method" value="delete">
-            <button>Reset timesheets</button>
+            <button>删除班表</button>
         </form>
       
     <% end %>
     <form action="/session" method="POST">
         <input type="hidden" name="_method" value="delete">
-        <button>Log Out</button>
+        <button>登出</button>
     </form>
     <% if !uploaded?(current_user['id']) %>
-        <a href="/timesheets/new"><button>Upload your avaliability</button></a>
+        <a href="/timesheets/new"><button>填写班表</button></a>
     <% else %>
-        <a href="/timesheets/edit"><button>Edit your avaliability</button></a>
+        <a href="/timesheets/edit"><button>更改班表</button></a>
     <% end %>
 <% else %>
-    <a href="/new"><button>Sign Up</button></a>
-    <a href="/session"><button>Login</button></a>
+    <a href="/new"><button>注 册</button></a>
+    <a href="/session"><button>登 录</button></a>
 <% end %>
 <% if logged_in? && uploaded?(session['user_id']) %>
     <table>
@@ -30,40 +30,40 @@
     
 
         <tr>
-            <th>Name</th>
-            <th>Monday<br><%= (Date.parse("monday"). + 7).strftime('%m-%d') %></th>
-            <th>Tuesday<br><%= (Date.parse("monday") + 8).strftime('%m-%d') %></th>
-            <th>Wednesday<br><%= (Date.parse("monday") + 9).strftime('%m-%d') %></th>
-            <th>Thursday<br><%= (Date.parse("monday") + 10).strftime('%m-%d') %></th>
-            <th>Friday<br><%= (Date.parse("monday") + 11).strftime('%m-%d') %></th>
-            <th>Saturday<br><%= (Date.parse("monday") + 12).strftime('%m-%d') %></th>
-            <th>Sunday<br><%= (Date.parse("monday") + 13).strftime('%m-%d') %></th>
-            <th>Notes</th>
+            <th>名字</th>
+            <th>周一<br><%= (Date.parse("monday"). + 7).strftime('%m-%d') %></th>
+            <th>周二<br><%= (Date.parse("monday") + 8).strftime('%m-%d') %></th>
+            <th>周三<br><%= (Date.parse("monday") + 9).strftime('%m-%d') %></th>
+            <th>周四<br><%= (Date.parse("monday") + 10).strftime('%m-%d') %></th>
+            <th>周五<br><%= (Date.parse("monday") + 11).strftime('%m-%d') %></th>
+            <th>周六<br><%= (Date.parse("monday") + 12).strftime('%m-%d') %></th>
+            <th>周天<br><%= (Date.parse("monday") + 13).strftime('%m-%d') %></th>
+            <th>备注</th>
         </tr>
         <% if current_user['id'] == manager_id %>
             <% timesheets.each do |timesheet| %>
                 <tr>
                     <td><%= get_user_by_id(timesheet['user_id'])['name'] %></td>
-                    <td><%= timesheet['mon'] %></td>
-                    <td><%= timesheet['tue'] %></td>
-                    <td><%= timesheet['wed'] %></td>
-                    <td><%= timesheet['thu'] %></td>
-                    <td><%= timesheet['fri'] %></td>
-                    <td><%= timesheet['sat'] %></td>
-                    <td><%= timesheet['sun'] %></td>
+                    <td><%= is_available?(timesheet['mon']) %></td>
+                    <td><%= is_available?(timesheet['tue']) %></td>
+                    <td><%= is_available?(timesheet['wed']) %></td>
+                    <td><%= is_available?(timesheet['thu']) %></td>
+                    <td><%= is_available?(timesheet['fri']) %></td>
+                    <td><%= is_available?(timesheet['sat']) %></td>
+                    <td><%= is_available?(timesheet['sun']) %></td>
                     <td><%= timesheet['notes'] %></td>
                 </tr>
             <% end %>
         <% else %>
             <tr>
                     <td><%= current_user['name'] %></td>
-                    <td><%= own_timesheet['mon'] %></td>
-                    <td><%= own_timesheet['tue'] %></td>
-                    <td><%= own_timesheet['wed'] %></td>
-                    <td><%= own_timesheet['thu'] %></td>
-                    <td><%= own_timesheet['fri'] %></td>
-                    <td><%= own_timesheet['sat'] %></td>
-                    <td><%= own_timesheet['sun'] %></td>
+                    <td><%= is_available?(own_timesheet['mon']) %></td>
+                    <td><%= is_available?(own_timesheet['tue']) %></td>
+                    <td><%= is_available?(own_timesheet['wed']) %></td>
+                    <td><%= is_available?(own_timesheet['thu']) %></td>
+                    <td><%= is_available?(own_timesheet['fri']) %></td>
+                    <td><%= is_available?(own_timesheet['sat']) %></td>
+                    <td><%= is_available?(own_timesheet['sun']) %></td>
                     <td><%= own_timesheet['notes'] %></td>
                 </tr>
         <% end %>
