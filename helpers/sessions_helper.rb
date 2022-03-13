@@ -19,8 +19,8 @@ end
 
 def is_available?(availability)
     if availability == "a"
-        return "有空"
+        return "A"
     else
-        return "没空"
+        return "N"
     end
 end
