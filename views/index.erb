@@ -1,26 +1,27 @@
-<% if logged_in?() %>
-    <h2>您好<%= current_user['name'] %></h2>
-    <% if is_manager?() %>
-        <h3>团队编号: <%= current_user['id'] %></h3>
-        <form action="/timesheets/delete" method="POST">
+    <% if logged_in?() %>
+        <h2>您好<%= current_user['name'] %></h2>
+        <section class="top-btns">
+        <% if is_manager?() %>
+            <h3>团队编号: <%= current_user['id'] %></h3>
+            <form class="btn" action="/timesheets/delete" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <button>删除班表</button>
+            </form>
+        
+        <% end %>
+        <form class="btn" action="/session" method="POST">
             <input type="hidden" name="_method" value="delete">
-            <button>删除班表</button>
+            <button>登出</button>
         </form>
-      
-    <% end %>
-    <form action="/session" method="POST">
-        <input type="hidden" name="_method" value="delete">
-        <button>登出</button>
-    </form>
-    <% if !uploaded?(current_user['id']) %>
-        <a href="/timesheets/new"><button>填写班表</button></a>
+        <% if !uploaded?(current_user['id']) %>
+            <a href="/timesheets/new"><button>填写班表</button></a>
+        <% else %>
+            <a href="/timesheets/edit"><button>更改班表</button></a>
+        <% end %>
     <% else %>
-        <a href="/timesheets/edit"><button>更改班表</button></a>
+        <a href="/new"><button class="btn">注 册</button></a>
+        <a href="/session"><button class="btn">登 录</button></a>
     <% end %>
-<% else %>
-    <a href="/new"><button>注 册</button></a>
-    <a href="/session"><button>登 录</button></a>
-<% end %>
 <% if logged_in? && uploaded?(session['user_id']) %>
     <table>
         <colgroup>
@@ -51,7 +52,7 @@
                     <td><%= is_available?(timesheet['fri']) %></td>
                     <td><%= is_available?(timesheet['sat']) %></td>
                     <td><%= is_available?(timesheet['sun']) %></td>
-                    <td><%= timesheet['notes'] %></td>
+                    <td class="notes"><%= timesheet['notes'] %></td>
                 </tr>
             <% end %>
         <% else %>
@@ -64,7 +65,7 @@
                     <td><%= is_available?(own_timesheet['fri']) %></td>
                     <td><%= is_available?(own_timesheet['sat']) %></td>
                     <td><%= is_available?(own_timesheet['sun']) %></td>
-                    <td><%= own_timesheet['notes'] %></td>
+                    <td class="notes"><%= own_timesheet['notes'] %></td>
                 </tr>
         <% end %>
     </table>

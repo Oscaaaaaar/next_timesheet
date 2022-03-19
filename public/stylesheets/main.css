@@ -48,3 +48,7 @@ input {
 span {
   font-size: 150%;
 }
+
+form {
+  display: inline-block;
+}
