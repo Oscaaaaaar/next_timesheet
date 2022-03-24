@@ -1,12 +1,13 @@
-<h1>您好 <%= current_user['name'] %></h1>
+<h1>Hello <%= current_user['name'] %></h1>
 <form action="/timesheets/new" method="POST">
     <label for="">您的团队编号: </label>
+    <label for="">(Your Team ID)</label>
     <% if uploaded?(current_user['id']) %>
         <input type="text" name="manager_id" value=<%= find_timesheet(current_user['id'])['manager_id'] %>>
     <% else %>
         <input type="text" name="manager_id">
     <% end %>
-    <label for="">周一: </label>
+    <label for="">周一(Mon): </label>
     <select name="mon">
         <option value="u">N</option>
         <% if day_available("mon", current_user['id']) %>
@@ -16,7 +17,7 @@
         <% end %>
     </select>
 
-    <label for="">周二: </label>
+    <label for="">周二(Tue): </label>
     <select name="tue">
         <option value="u">N</option>
         <% if day_available("tue", current_user['id']) %>
@@ -26,7 +27,7 @@
         <% end %>
     </select>
 
-    <label for="">周三: </label>
+    <label for="">周三(Wed): </label>
     <select name="wed">
         <option value="u">N</option>
         <% if day_available("wed", current_user['id']) %>
@@ -36,7 +37,7 @@
         <% end %>
     </select>
 
-    <label for="">周四: </label>
+    <label for="">周四(Thu): </label>
     <select name="thu">
         <option value="u">N</option>
         <% if day_available("thu", current_user['id']) %>
@@ -46,7 +47,7 @@
         <% end %>
     </select>
 
-    <label for="">周五: </label>
+    <label for="">周五(Fri): </label>
     <select name="fri">
         <option value="u">N</option>
         <% if day_available("fri", current_user['id']) %>
@@ -56,7 +57,7 @@
         <% end %>
     </select>
 
-    <label for="">周六: </label>
+    <label for="">周六(Sat): </label>
     <select name="sat">
         <option value="u">N</option>
         <% if day_available("sat", current_user['id']) %>
@@ -66,7 +67,7 @@
         <% end %>
     </select>
 
-    <label for="">周天: </label>
+    <label for="">周天(Sun): </label>
     <select name="sun">
         <option value="u">N</option>
         <% if day_available("sun", current_user['id']) %>
@@ -76,12 +77,12 @@
         <% end %>
     </select>
 
-    <label for="">备注: </label>
+    <label for="">备注(Notes): </label>
     <% if uploaded?(current_user['id']) %>
         <textarea name="notes" cols="30" rows="10"><%= find_timesheet(current_user['id'])['notes'] %></textarea>
-        <button>更改</button>
+        <button>更改(Edit)</button>
     <% else %>
         <textarea name="notes" cols="30" rows="10"></textarea>
-        <button>提交</button>
+        <button>提交(Submit)</button>
     <% end %>
 </form>

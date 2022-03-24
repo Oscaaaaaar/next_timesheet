@@ -1,6 +1,6 @@
-# Next Timesheet
+# Stella Timesheet
 
-## Use the most powerful tool to manage your team's timesheet.
+## A simple App made for my partner to help her managing teammembers availability.
 
 Try the app on Heroku [NextTimesheet](https://stella-timesheet.herokuapp.com/)
 
@@ -15,3 +15,16 @@ Try the app on Heroku [NextTimesheet](https://stella-timesheet.herokuapp.com/)
    -- Sign up, enter your manager ID that your manager send you when filling your timesheet.
    -- After submitting your timesheet, you will be able to see the whole timesheet of your team.
    -- And also you can edit your timesheet anytime.
+
+## Technologies used
+
+<ul>
+    <li>Sinatra</li>
+    <li>Ruby</li>
+    <li>Postgresql</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li>GitHub</li>
+    <li>Heroku</li>
+</ul>
